@@ -1,0 +1,22 @@
+---
+
+- hosts: all
+  become: true
+  
+  tasks:
+  - name: Install Apache for Ubuntu
+    apt:
+      name: 
+        - apache2
+      state: latest
+      update_cache: yes
+
+  - name: Set Time-Zone
+    timezone:
+      name: Africa/Lagos
+      
+  - name: Display Time on Home Page
+    shell: echo $(date) > /var/www/html/index.html 
+
+  - name: Display Hostname on Home Page
+    shell: echo $(hostname) >> /var/www/html/index.html
